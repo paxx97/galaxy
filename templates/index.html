@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Melody Box</title>
+    <meta charset="utf-8"/>
+    <link rel="shortcut icon" type="image/x-icon" href="../static/images/icon.png"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="{{ url_for('static', filename = 'js/jquery.js') }}"></script>
+    <link href="{{ url_for('static', filename = 'bootstrap/bootstrap.min.css') }}" rel="stylesheet">
+
+    <!-- Include Resource Stylesheets -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'css/foundation.min.css') }}"/>
+
+    <!-- Include font -->
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
+
+    <!--
+        Include Resource Javascript
+        NOTE: These are for handling things outside of the scope of AmplitudeJS
+    -->
+    <script type="text/javascript" src="{{ url_for('static', filename = 'js/jquery.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename = 'js/foundation.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename = 'js/functions.js') }}"></script>
+
+    <!-- Include Amplitude JS -->
+    <script type="text/javascript" src="{{ url_for('static', filename = 'dist/amplitude.js') }}"></script>
+
+    <!-- Include Style Sheet -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'css/app.css') }}"/>
+</head>
+<body>
+
+<div class="content-wrapper" align="center">
+    <div class="banner" align="center">
+        <img src="{{ url_for('static', filename = 'images/banner.png') }} "/>
+    </div>
+    <div id="white-player">
+
+        <div class="white-player-top">
+            <div class="grid-x">
+                <div class="large-3 medium-3 small-3 cell">
+
+                </div>
+                <div class="large-6 medium-6 small-6 cell">
+                    <span class="now-playing">Relax your mind :3</span>
+                </div>
+                <div class="large-3 medium-3 small-3 cell">
+                    <img src="{{ url_for('static', filename = './img/show-playlist.svg') }}" class="show-playlist"/>
+                </div>
+            </div>
+        </div>
+
+        <div id="white-player-center">
+            <img data-amplitude-song-info="cover_art_url" class="main-album-art"/>
+
+            <div class="song-meta-data">
+                <span data-amplitude-song-info="name" class="song-name"></span>
+                <span data-amplitude-song-info="artist" class="song-artist"></span>
+            </div>
+
+            <div class="time-progress">
+                <div class="grid-x">
+                    <div class="large-12 medium-12 small-12 cell">
+                        <div id="progress-container">
+                            <input type="range" class="amplitude-song-slider"/>
+                            <progress id="song-played-progress" class="amplitude-song-played-progress"></progress>
+                            <progress id="song-buffered-progress" class="amplitude-buffered-progress"
+                                      value="0"></progress>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid-x">
+                    <div class="large-6 medium-6 small-6 cell">
+                  <span class="current-time">
+  				          <span class="amplitude-current-minutes"></span>:<span
+                          class="amplitude-current-seconds"></span>
+  				        </span>
+                    </div>
+                    <div class="large-6 medium-6 small-6 cell">
+                  <span class="duration">
+  				          <span class="amplitude-duration-minutes"></span>:<span
+                          class="amplitude-duration-seconds"></span>
+  				        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="white-player-controls">
+            <div class="grid-x">
+                <div class="large-12 medium-12 small-12 cell">
+                    <div class="amplitude-shuffle amplitude-shuffle-off" id="shuffle"></div>
+                    <div class="amplitude-prev" id="previous"></div>
+                    <div class="amplitude-play-pause" id="play-pause"></div>
+                    <div class="amplitude-next" id="next"></div>
+                    <div class="amplitude-repeat" id="repeat"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="white-player-playlist-container">
+            <div class="white-player-playlist-top">
+                <div class="grid-x">
+                    <div class="large-3 medium-3 small-3 cell">
+
+                    </div>
+                    <div class="large-6 medium-6 small-6 cell">
+                        <span class="queue">Queue</span>
+                    </div>
+                    <div class="large-3 medium-3 small-3 cell">
+                        <img src="{{ url_for('static', filename = './img/close.svg') }}" class="close-playlist"/>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="white-player-playlist">
+                <div class="white-player-playlist-song amplitude-song-container amplitude-play-pause"
+                     data-amplitude-song-index="0">
+                    <img src="{{ url_for('static', filename = 'album-art/boy.with.luv.jpg') }}"/>
+
+                    <div class="playlist-song-meta">
+                        <span class="playlist-song-name">Boy with Love</span>
+                        <span class="playlist-artist-album">BTS</span>
+                    </div>
+                </div>
+                <div class="white-player-playlist-song amplitude-song-container amplitude-play-pause"
+                     data-amplitude-song-index="1">
+                    <img src="{{ url_for('static', filename = 'album-art/hold.me.tight.jpg') }}"/>
+
+                    <div class="playlist-song-meta">
+                        <span class="playlist-song-name">Hold Me Tight</span>
+                        <span class="playlist-artist-album">BTS</span>
+                    </div>
+                </div>
+                <div class="white-player-playlist-song amplitude-song-container amplitude-play-pause"
+                     data-amplitude-song-index="2">
+                    <img src="{{ url_for('static', filename = 'album-art/let.me.know.jpg') }}"/>
+
+                    <div class="playlist-song-meta">
+                        <span class="playlist-song-name">Let Me Know</span>
+                        <span class="playlist-artist-album">BTS</span>
+                    </div>
+                </div>
+                <div class="white-player-playlist-song amplitude-song-container amplitude-play-pause"
+                     data-amplitude-song-index="3">
+                    <img src="{{ url_for('static', filename = 'album-art/mic.drop.jpg') }}"/>
+
+                    <div class="playlist-song-meta">
+                        <span class="playlist-song-name">Mic Drop</span>
+                        <span class="playlist-artist-album">BTS</span>
+                    </div>
+                </div>
+                <div class="white-player-playlist-song amplitude-song-container amplitude-play-pause"
+                     data-amplitude-song-index="4">
+                    <img src="{{ url_for('static', filename = 'album-art/outro.jpg') }}"/>
+
+                    <div class="playlist-song-meta">
+                        <span class="playlist-song-name">Outro - Her</span>
+                        <span class="playlist-artist-album">BTS</span>
+                    </div>
+                </div>
+                <div class="white-player-playlist-song amplitude-song-container amplitude-play-pause"
+                     data-amplitude-song-index="5">
+                    <img src="{{ url_for('static', filename = 'album-art/paradise.jpg') }}"/>
+
+                    <div class="playlist-song-meta">
+                        <span class="playlist-song-name">Paradise</span>
+                        <span class="playlist-artist-album">BTS</span>
+                    </div>
+                </div>
+                <div class="white-player-playlist-song amplitude-song-container amplitude-play-pause"
+                     data-amplitude-song-index="6">
+                    <img src="{{ url_for('static', filename = 'album-art/pied.piper.jpg') }}"/>
+
+                    <div class="playlist-song-meta">
+                        <span class="playlist-song-name">Pied Piper</span>
+                        <span class="playlist-artist-album">BTS</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="white-player-playlist-controls">
+                <img data-amplitude-song-info="cover_art_url" class="playlist-album-art"/>
+
+                <div class="playlist-controls">
+                    <div class="grid-x">
+                        <div class="large-6 medium-6 small-6 cell">
+                            <span data-amplitude-song-info="name" class="song-name"></span>
+                            <span data-amplitude-song-info="artist" class="song-artist"></span>
+                        </div>
+                        <div class="large-6 medium-6 small-6 cell">
+                            <div class="playlist-control-wrapper">
+                                <div class="amplitude-prev" id="playlist-previous"></div>
+                                <div class="amplitude-play-pause" id="playlist-play-pause"></div>
+                                <div class="amplitude-next" id="playlist-next"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+<script type="text/javascript">
+    Amplitude.init({
+        "songs": [
+            {
+                "name": "Boy with Love",
+                "artist": "BTS",
+                "album": "BTS",
+                "url": "{{ url_for('static', filename = 'music/Boy.With.Luv.mp3') }}",
+                "cover_art_url": "{{ url_for('static', filename = 'album-art/boy.with.luv.jpg') }}"
+            },
+            {
+                "name": "Hole Me Tight",
+                "artist": "BTS",
+                "album": "BTS",
+                "url": "{{ url_for('static', filename = 'music/Hold.Me.Tight.mp3') }}",
+                "cover_art_url": "{{ url_for('static', filename = 'album-art/hold.me.tight.jpg') }}"
+            },
+            {
+                "name": "Let Me Know",
+                "artist": "BTS",
+                "album": "BTS",
+                "url": "{{ url_for('static', filename = 'music/let.me.know') }}",
+                "cover_art_url": "{{ url_for('static', filename = 'album-art/let.me.know.jpg') }}"
+            },
+            {
+                "name": "MIC Drop",
+                "artist": "BTS",
+                "album": "BTS",
+                "url": "{{ url_for('static', filename = 'music/MIC.Drop.mp3') }}",
+                "cover_art_url": "{{ url_for('static', filename = 'album-art/mic.drop.jpg') }}"
+            },
+            {
+                "name": "Outro - Her",
+                "artist": "BTS",
+                "album": "BTS",
+                "url": "{{ url_for('static', filename = 'music/Outro.Her.mp3') }}",
+                "cover_art_url": "{{ url_for('static', filename = 'album-art/outro.jpg') }}"
+            },
+            {
+                "name": "Paradise",
+                "artist": "BTS",
+                "album": "BTS",
+                "url": "{{ url_for('static', filename = 'music/Paradise.mp3') }}",
+                "cover_art_url": "{{ url_for('static', filename = 'album-art/paradise.jpg') }}"
+            },
+            {
+                "name": "Pied Piper",
+                "artist": "BTS",
+                "album": "BTS",
+                "url": "{{ url_for('static', filename = 'music/Pied.Piper.mp3') }}",
+                "cover_art_url": "{{ url_for('static', filename = 'album-art/pied.piper.jpg') }}"
+            },
+        ]
+    });
+</script>
+</html>
